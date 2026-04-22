@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Живая история: малые музеи Ставрополья</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=f62c8aba-c41e-40d4-ac9a-38e0948ea625&lang=ru_RU" type="text/javascript"></script>
+</head>
+<body>
+    <div class="app-header">
+        <h1><i class="fas fa-landmark"></i> Живая история: малые музеи Ставрополья</h1>
+        <div class="user-info"><i class="fas fa-user"></i> <span id="userIdDisplay">гость</span></div>
+    </div>
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="main"><i class="fas fa-home"></i> Главная</button>
+        <button class="tab-btn" data-tab="map"><i class="fas fa-map"></i> Карта</button>
+        <button class="tab-btn" data-tab="events"><i class="fas fa-calendar-alt"></i> События</button>
+        <button class="tab-btn" data-tab="passport"><i class="fas fa-passport"></i> Мой паспорт</button>
+    </div>
+    <div class="tab-content">
+        <!-- Главная: карточки музеев -->
+        <div id="main-tab" class="tab-pane active">
+            <div id="museums-list" class="card-list"></div>
+        </div>
+        <!-- Карта -->
+        <div id="map-tab" class="tab-pane">
+            <div id="map" style="width:100%; height:60vh;"></div>
+        </div>
+        <!-- События -->
+        <div id="events-tab" class="tab-pane">
+            <div class="filter-bar">
+                <label><input type="checkbox" id="showOnlySubscribedEvents"> Только из подписанных музеев</label>
+            </div>
+            <div id="events-list" class="card-list"></div>
+        </div>
+        <!-- Мой паспорт -->
+        <div id="passport-tab" class="tab-pane">
+            <div id="passport-info"></div>
+            <div id="adminPanel">
+                <button id="adminLoginBtn" class="admin-login-btn"><i class="fas fa-lock"></i> Вход для сотрудников</button>
+                <div id="adminLoginForm" class="hidden">
+                    <input type="password" id="adminPassword" placeholder="Пароль">
+                    <button id="doAdminLogin">Войти</button>
+                </div>
+                <div id="adminControls" class="hidden">
+                    <h3>Управление музеями</h3>
+                    <button id="addMuseumBtn"><i class="fas fa-plus"></i> Добавить музей</button>
+                    <div id="museumsAdminList"></div>
+                    <h3>Управление событиями</h3>
+                    <button id="addEventBtn"><i class="fas fa-plus"></i> Добавить событие</button>
+                    <div id="eventsAdminList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Модальное окно для экспонатов -->
+    <div id="exhibitsModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Экспонаты музея</h3>
+            <div id="exhibitsListModal"></div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
